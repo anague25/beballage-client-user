@@ -9,12 +9,13 @@
                     <div
                         class="bg-white rounded-lg shadow-sm w-[90%] lg:w-[60%] h-[91%] ml-4 mt-4 mb-4 px-4 py-4 lg:py-6 lg:px-6 ">
                         <div class="">
-                            <h1 class="w-full h-full text-[24px] font-medium">Add a new product</h1>
+                            <h1 class="w-full h-full text-[24px] font-medium">Modifier la boutique</h1>
                         </div>
                         <form @submit.prevent="updateExistingShop" enctype="multipart/form-data">
                             <!-- Form Group (username)-->
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="name"><b>Shop Name</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="name"><b>Nom de la
+                                        boutique</b></label>
                                 <input type="text" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="name" id="name" placeholder="Enter Shop Name">
                                 <span v-if="errors.name" class="text-red-400 mt-1 text-xs font-thin">{{ errors.name[0]
@@ -29,7 +30,7 @@
                                     placeholder="Enter Shop Description "></textarea>
                                 <span v-if="errors.description" class="text-red-400 mt-1 text-xs font-thin">{{
                                     errors.description[0]
-                                    }}</span>
+                                }}</span>
                             </div>
 
 
@@ -42,7 +43,7 @@
                                     <option v-for="city in cities" :key="city.id" :value="city.id">{{
                                         city.name }}</option>
                                 </select>
-                                <label :for="'neighborhood_' + index"><b>Neighborhood</b></label>
+                                <label :for="'neighborhood_' + index"><b>Quartier</b></label>
                                 <select :id="'neighborhood_' + index"
                                     class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="field.neighborhood_id">
@@ -52,17 +53,17 @@
                                 </select>
                                 <button
                                     class="hover:bg-red-800 transition-all rounded-[4.8px] mt-6 w-full bg-red-700 text-white"
-                                    type="button" @click="removeFieldCityNeighborhood(index)">Delete</button>
+                                    type="button" @click="removeFieldCityNeighborhood(index)">Supprimer</button>
                             </div>
                             <button
                                 class="hover:bg-green-800 transition-all rounded-[4.8px] mt-6 w-full bg-green-700 text-white"
-                                type="button" @click="addFieldCityNeighborhood">Add</button>
+                                type="button" @click="addFieldCityNeighborhood">Ajouter</button>
 
 
                             <!-- Champs dynamiques category-subcategory -->
                             <div class="form-group" v-for="(field, index) in category_fields" :key="index">
                                 <label class="text-sm font-medium mb-2 block"
-                                    :for="'category_' + index"><b>Category</b></label>
+                                    :for="'category_' + index"><b>Catégorie</b></label>
                                 <select :id="'category_' + index"
                                     class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="field.category_id" @change="fetchSubCategories(field.category_id, index)">
@@ -70,7 +71,7 @@
                                         category.name }}</option>
                                 </select>
                                 <label class="text-sm font-medium mb-2 block"
-                                    :for="'subCategory_' + index"><b>Sub-Category</b></label>
+                                    :for="'subCategory_' + index"><b>Sous-catégorie</b></label>
                                 <select :id="'subCategory_' + index"
                                     class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="field.subCategory_id">
@@ -84,23 +85,24 @@
                             </div>
                             <button
                                 class=" hover:bg-green-800 transition-all rounded-[4.8px] mt-6 w-full bg-green-700 text-white"
-                                type="button" @click="addFieldCategorySubCategory">Add</button>
+                                type="button" @click="addFieldCategorySubCategory">Ajouter</button>
 
 
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="image"><b>Profile Image</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="image"><b>Image de profil</b></label>
                                 <input type="file" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     @change="onFileChangeProfile" id="image" placeholder="Enter Profie Image">
                                 <img v-if="imageUrlProfile" :src="imageUrlProfile" alt="Selected Image" class="mt-2"
                                     width="50" height="50" />
                                 <span v-if="errors.profile" class="text-red-400 mt-1 text-xs font-thin">{{
                                     errors.profile[0]
-                                    }}</span>
+                                }}</span>
                             </div>
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="image"><b>Cover Image</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="image"><b>Image de
+                                        couverture</b></label>
                                 <input type="file" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     @change="onFileChangeCover" id="image" placeholder="Enter Cover Image">
                                 <img v-if="imageUrlCover" :src="imageUrlCover" alt="Selected Image" class="mt-2"
@@ -111,7 +113,7 @@
 
                             <!-- Save changes button-->
                             <button type="submit"
-                                class="py-[12px] hover:bg-red-800 transition-all rounded-[4.8px] mt-6 w-full bg-red-700 text-white">Update</button>
+                                class="py-[12px] hover:bg-red-800 transition-all rounded-[4.8px] mt-6 w-full bg-red-700 text-white">Modifier</button>
                         </form>
                     </div>
                 </div>
@@ -212,7 +214,7 @@ export default {
                 categories.value = store.getters['categories/allCategories'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -225,7 +227,7 @@ export default {
                 cities.value = store.getters['cities/allCities'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -306,7 +308,7 @@ export default {
             } catch (validationErrors) {
                 errors.value = validationErrors;
                 console.log(validationErrors);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };

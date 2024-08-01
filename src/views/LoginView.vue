@@ -1,7 +1,7 @@
 <template>
     <main
         class="w-full md:h-full md:py-8 h-full py-[120px] px-[16px] xl:h-screen flex justify-center items-center bg-[#F1F3F6] md:px-10">
-       <Loader></Loader>
+        <Loader></Loader>
         <div
             class="flex justify-center items-center flex-col md:flex-row w-full h-[initial] lg:max-h-[800px] lg:max-w-[900px] max-w-[1480px] xl:max-w-[1300px] mx-auto rounded-xl overflow-hidden">
             <div
@@ -26,7 +26,7 @@
                                     errors.email[0] }} </span>
                             </div>
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="user_password">Password</label>
+                                <label class="text-sm font-medium mb-2 block" for="user_password">Mot de passe</label>
                                 <input class="block w-full py-3 px-3 border-[1.5px] border-gray-400" type="password"
                                     placeholder="your password" v-model="password" id="user_password">
                                 <span v-if="errors.password" class="text-red-400 mt-1 text-xs font-thin">{{
@@ -37,11 +37,11 @@
                         <div class="text-[14px] font-light flex justify-between items-center mt-4">
                             <span class="flex items-center gap-x-2">
                                 <input type="checkbox" v-model="rememberMe" id="remember_me">
-                                <label for="">Remember me</label>
+                                <label for="">se souvenir de moi</label>
                             </span>
                             <span class="inline-block">
-                                <router-link class="underline" to="/api/users/password/email">Forgot
-                                    password?</router-link>
+                                <router-link class="underline" to="/users/password/email">Mot de passe
+                                    oublié</router-link>
                             </span>
                         </div>
                         <div class="">
@@ -144,7 +144,7 @@ export default {
                         confirmButtonText: 'OK'
                     });
                 }
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };

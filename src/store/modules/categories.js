@@ -14,7 +14,6 @@ const getters = {
   allCategories: (state) => state.allCategories,
   parentCategories: (state) => state.allCategories.filter(category => category.parent_id == null), // Filtre les catégories parentes
   categoryById: (state) => (id) => state.categories.find(attr => attr.id === id),
-  getPath: (state) => state.path,
 };
 
 const mutations = {
@@ -67,15 +66,15 @@ const actions = {
     try {
       const response = await categoriesService.fetchCategories(page, search);
       commit('setCategories', { data: response.data.data, meta: response.data.meta });
+      return response;
     } catch (error) {
-      toast.error('Failed to fetch attributes');
+      throw error;
     }
   },
 
   async fetchAllCategories({ commit }) {
     try {
       const response = await categoriesService.fetchAllCategories();
-      console.log(response.data);
       commit('setAllCategories', response.data);
     } catch (error) {
       console.log(error);
@@ -109,6 +108,9 @@ const actions = {
       if (error.response && error.response.data && error.response.data.errors) {
         console.log(error);
         throw error.response.data.errors;
+      } else {
+        console.log(error);
+
       }
     }
   }

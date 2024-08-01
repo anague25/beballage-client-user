@@ -9,12 +9,12 @@
                     <div
                         class="bg-white rounded-lg shadow-sm w-[90%] lg:w-[60%] h-[91%] ml-4 mt-4 mb-4 px-4 py-4 lg:py-6 lg:px-6 ">
                         <div class="">
-                            <h1 class="w-full h-full text-[24px] font-medium">Add a new product</h1>
+                            <h1 class="w-full h-full text-[24px] font-medium">Ajouter un nouveau produit</h1>
                         </div>
                         <form @submit.prevent="createNewProduct" enctype="multipart/form-data">
                             <!-- Form Group (username)-->
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="name"><b>Product Name</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="name"><b>Nom du produit</b></label>
                                 <input type="text" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="name" id="name" placeholder="Enter Property Name">
                                 <span v-if="errors.name" class="text-red-400 mt-1 text-xs font-thin">{{ errors.name[0]
@@ -23,7 +23,7 @@
 
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="name"><b>Price</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="name"><b>Prix</b></label>
                                 <input type="number" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="price" id="price" placeholder="Enter Product Price">
                                 <span v-if="errors.price" class="text-red-400 mt-1 text-xs font-thin">{{ errors.price[0]
@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="quantity"><b>Quantity</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="quantity"><b>Quantité</b></label>
                                 <input type="text" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="quantity" id="name" placeholder="Enter Product Quantity">
                                 <span v-if="errors.quantity" class="text-red-400 mt-1 text-xs font-thin">{{
@@ -50,8 +50,8 @@
 
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="category_id"><b>Choose the
-                                        Category</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="category_id"><b>Choisissez la
+                                        catégorie</b></label>
                                 <select class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="category_id" id="category_id" autocomplete="off">
                                     <option value="">None</option>
@@ -65,7 +65,7 @@
 
                             <!-- Champs dynamiques attribut-propriété -->
                             <div class="form-group" v-for="(field, index) in attribute_fields" :key="index">
-                                <label class="text-sm font-medium mb-2 block"><b>Attribute</b></label>
+                                <label class="text-sm font-medium mb-2 block"><b>Attribut</b></label>
                                 <select class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="field.attribute_id" @change="fetchProperties(field.attribute_id, index)">
                                     <option v-for="attribute in attributes" :key="attribute.id" :value="attribute.id">
@@ -91,7 +91,8 @@
 
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="image"><b>Main Image</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="image"><b>Image
+                                        Principale</b></label>
                                 <input type="file" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     @change="onFileChange" id="image" placeholder="Enter Product Image">
                                 <img v-if="imageUrl" :src="imageUrl" alt="Selected Image" class="mt-2" width="50"
@@ -102,20 +103,20 @@
 
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="images"><b>Products
-                                        Images</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="images"><b>Images du
+                                        produit</b></label>
                                 <input type="file" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     id="images" multiple @change="handleFileUpload" />
                                 <span v-if="errors.images" class="text-red-400 mt-1 text-xs font-thin">{{
                                     errors.image[0]
-                                }}</span>
+                                    }}</span>
                             </div>
 
 
                             <!-- Save changes button-->
                             <button
                                 class="py-[12px] hover:bg-red-800 transition-all rounded-[4.8px] mt-6 w-full bg-red-700 text-white"
-                                type="submit">Create</button>
+                                type="submit">Créer</button>
                         </form>
                     </div>
                 </div>
@@ -180,7 +181,7 @@ export default {
                 categories.value = store.getters['categories/allCategories'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
 
             }
@@ -193,7 +194,7 @@ export default {
                 attributes.value = store.getters['attributes/allAttributes'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
 
             }
@@ -271,7 +272,7 @@ export default {
             } catch (validationErrors) {
                 errors.value = validationErrors;
                 console.log(validationErrors);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };

@@ -1,7 +1,7 @@
 <template>
     <main
         class="w-full py-[100px] px-[16px] md:h-full md:py-8 lg:py-[120px] h-full xl:h-full flex items-center bg-[#F1F3F6] md:px-[40px]">
-     <Loader></Loader>
+        <Loader></Loader>
         <div
             class="flex md:max-h-[1200px] flex-col md:flex-row w-full lg:max-w-[900px] max-w-[1480px] xl:max-w-[1300px] mx-auto rounded-xl overflow-hidden">
             <div class=" bg-white relative top-[50%] px-7 md:px-[20px] md:py-[50px] py-7 w-full md:w-[50%] mx-auto">
@@ -9,9 +9,10 @@
                     <div class="logo flex justify-center"><a href="/index.html"><img src="/images/pngs/logo-white.png"
                                 alt=""></a></div>
                     <div class="py-5 flex items-center flex-col ">
-                        <h1 class=" text-[20px] font-bold">Join Deballage for free</h1>
-                        <p class="font-thin text-sm mt-2 text-center">Join thousands across Africa to shop or sell your
-                            products with ease.</p>
+                        <h1 class=" text-[20px] font-bold">Rejoignez Deballage gratuitement</h1>
+                        <p class="font-thin text-sm mt-2 text-center">Rejoignez des milliers de personnes à travers
+                            l'Afrique pour acheter ou vendre vos
+                            produits en toute simplicité.</p>
                     </div>
                     <form @submit.prevent="registerSeller">
                         <div class="pt-[0px] flex flex-col gap-y-[10px]">
@@ -95,7 +96,7 @@ export default {
 
                 Swal.fire({
                     title: 'Succès!',
-                    text: 'Felicitation vous venez de completez votre status et etes maintemant un vendeur sur deballage vous pouvez desormais creer votre boutique et commencer a vendre.',
+                    text: 'Félicitations, vous venez de compléter votre statut et êtes maintenant un vendeur sur Deballage. Vous pouvez désormais créer votre boutique et commencer à vendre.',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then(() => {
@@ -121,7 +122,7 @@ export default {
                         confirmButtonText: 'OK'
                     });
                 }
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };

@@ -9,7 +9,7 @@
                     <form @submit.prevent="placeOrder">
                         <div class="">
                             <div class="hidden lg:flex gap-x-4 text-left border-b-[1px] border-gray-300 py-5">
-                                <span class="block w-[40%] font-bold">Payment method</span>
+                                <span class="block w-[40%] font-bold">Mode de paiement</span>
                             </div>
                             <div class="mb-3 blog">
 
@@ -58,12 +58,12 @@
                                             <path d="M6 8L2 12L6 16" />
                                             <path d="M2 12H22" />
                                         </svg></span>
-                                    <span class="block "><router-link to="/shipping">Return to
-                                            shipping</router-link></span>
+                                    <span class="block "><router-link to="/shipping">Retour à l'adresse de
+                                            livraison</router-link></span>
                                 </button>
                                 <button type="submit"
-                                    class="bg-red-700 w-full lg:w-fit px-4 py-3 lg:py-2 rounded-md text-white font-semibold">Confirm
-                                    your order</button>
+                                    class="bg-red-700 w-full lg:w-fit px-4 py-3 lg:py-2 rounded-md text-white font-semibold">Confirmez
+                                    votre commande</button>
                             </div>
                         </div>
                     </form>

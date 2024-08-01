@@ -1,0 +1,1 @@
+import{_ as t}from"./index-BCmC1QR8.js";import{G as o,I as r,$ as s,L as n}from"./@vue-CRjAt1GK.js";const c={},a={class:"text-[24px] lg:text-[30px] font-bold text-gray-800"};function _(e,l){return o(),r("h1",a,[s(e.$slots,"greeting",{},()=>[n("Good Day, ETA NELSON")])])}const f=t(c,[["render",_]]);export{f as G};

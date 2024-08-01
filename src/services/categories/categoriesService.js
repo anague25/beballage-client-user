@@ -2,11 +2,11 @@ import axios from '@/plugins/axios';
 
 const API_URL = '/api/categories';
 export default {
-  fetchCategories(page = 1,search='') {
+  fetchCategories(page = 1, search = '') {
     return axios.get(API_URL, {
       params: {
         page: page,
-        query:search
+        query: search
       }
     });
   },

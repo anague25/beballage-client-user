@@ -2,22 +2,24 @@
     <!-- Navbar starts here -->
     <nav class="relative">
         <!-- secondary navbar -->
-        <!-- <div class="bg-slate-800 py-3 hidden md:block px-6 2xl:px-0">
+        <div class="bg-slate-800 py-3 hidden md:block px-6 2xl:px-0">
             <div class="2xl:max-w-[1480px] mx-auto flex justify-between text-sm">
                 <div class="flex text-white md:gap-x-3 lg:gap-7">
-                    <a href="#">English</a>
-                    <a href="#">French</a>
+                    <!-- <a href="#">English</a>
+                    <a href="#">French</a> -->
                 </div>
                 <div class="second-nav-items text-slate-50 flex md:gap-x-4 lg:gap-7 lg:text-sm">
-                    <a href="" class="block">Shop grocery</a>
-                    <a href="" class="block">Merchant Center</a>
-                    <a href="" class="block">Source Suppliers</a>
+                    <router-link to="/categories" class="block">Categories</router-link>
+                    <router-link to="/shops" class="block">Boutiques</router-link>
+                    <router-link to="/abouts" class="block">A propos</router-link>
+                    <router-link to="/contacts" class="block">Contact</router-link>
+                    <!-- <a href="" class="block">Source Suppliers</a>
                     <a href="" class="block">Order tracking</a>
                     <span class="block"><a href="./pages/registration.html">Register</a> or <a
-                            href="./pages/login.html">Login</a></span>
+                            href="./pages/login.html">Login</a></span> -->
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- Primary navbar -->
         <div class="bg-black py-[7px] hidden lg:block">
             <div class="2xl:max-w-[1480px] mx-auto flex  justify-center items-center">
@@ -38,7 +40,8 @@
                 </div>
                 <div class="icons-set flex gap-2 w-[12.5%]">
                     <a href="" class="block"><img src="/images/svgs/fillter.svg" alt="filtrer vos produits" /></a>
-                    <a href="" class="block"><img src=/images/svgs/favorite.svg alt="consulter vos favoris" /></a>
+                    <router-link to="/favorites-products" class="block"><img src=/images/svgs/favorite.svg
+                            alt="consulter vos favoris" /></router-link>
                     <router-link to="/cart" class="block flex"><img src=/images/svgs/cart.svg
                             alt="regarder votre panier" />
                         <span class="bg-red-700 text-white inline-block p-1 rounded-full text-small">{{ countCartitems
@@ -48,19 +51,69 @@
             </div>
         </div>
         <!-- mobile navbar -->
+        <!-- mobile navbar -->
+        <!-- mobile navbar -->
+        <!-- mobile navbar -->
+        <!-- mobile navbar -->
+            <!-- secondary navbar -->
+            <!-- <div class="bg-slate-800 py-3 md:hidden md:block px-6 2xl:px-0">
+            <div class="2xl:max-w-[1480px] mx-auto flex justify-between text-sm">
+                <div class="flex text-white md:gap-x-3 lg:gap-7">
+                  
+                </div>
+                <div class="second-nav-items text-slate-50 flex">
+                    <router-link to="/categories" class="block">Categories</router-link>
+                    <router-link to="/shops" class="block">Boutiques</router-link>
+                    <router-link to="/abouts" class="block">A propos</router-link>
+                    <router-link to="/contacts" class="block">Contact</router-link>
+                 
+                </div>
+            </div>
+        </div> -->
+        <div class="bg-slate-800 py-3 md:hidden md:block px-6 2xl:px-0">
+  <div class="2xl:max-w-[1480px] mx-auto flex justify-between text-sm">
+    <div class="flex text-white gap-x-3 lg:gap-7">
+      <!-- Liens pour la langue, désactivés -->
+      <!-- <a href="#">English</a>
+      <a href="#">French</a> -->
+    </div>
+    <div class="second-nav-items text-slate-50 flex gap-x-4 md:gap-x-6">
+      <router-link to="/categories" class="block">Categories</router-link>
+      <router-link to="/shops" class="block">Boutiques</router-link>
+      <router-link to="/abouts" class="block">A propos</router-link>
+      <router-link to="/contacts" class="block">Contact</router-link>
+      <!-- Liens supplémentaires, désactivés -->
+      <!-- <a href="" class="block">Source Suppliers</a>
+      <a href="" class="block">Order tracking</a>
+      <span class="block"><a href="./pages/registration.html">Register</a> or <a href="./pages/login.html">Login</a></span> -->
+    </div>
+  </div>
+</div>
         <div class="p-4 lg:px-0 bg-black lg:hidden">
             <div class="flex justify-between items-center">
+                
                 <div class="flex items-center gap-2">
                     <button class="menuToggle"><img id="openIcon" src="/images/svgs/icon_menu.svg" alt=""></button>
                     <div class="w-[120px] h-auto"><a href="https://deballage.cm"><img
                                 src="/images/pngs/deballage-logo.png" alt=""></a></div>
                 </div>
-                <div class="cart"><img src="/images/svgs/cart.svg" alt=""></div>
+                <div class="cart">
+                    <!-- <img src="/images/svgs/cart.svg" alt=""> -->
+                    <router-link to="/cart" class="block flex"><img src=/images/svgs/cart.svg
+                            alt="regarder votre panier" />
+                        <span class="bg-red-700 text-white inline-block p-1 rounded-full text-small">{{ countCartitems
+                            }}</span>
+                    </router-link>
+                </div>
+                <div class="cart"><router-link to="/favorites-products" class="block"><img src=/images/svgs/favorite.svg
+                            alt="consulter vos favoris" /></router-link>
+                </div>
             </div>
             <div class="flex py-3">
-                <input class="p-2 rounded-[3.95px] rounded-tr-none rounded-br-none w-[87%]"
+                <input v-model="searchTerm" @keydown.enter="performSearch"
+                    class="p-2 rounded-[3.95px] rounded-tr-none rounded-br-none w-[87%]"
                     placeholder="Rechercher des produits, des marques" type="search" name="" id="">
-                <button
+                <button @click.prevent="performSearch"
                     class="bg-red-700 w-[13%] flex justify-center items-center rounded-[3.95px] rounded-tl-none rounded-bl-none p-2"><img
                         src="/images/svgs/search.svg" alt=""></button>
             </div>
@@ -77,8 +130,13 @@
                     </div>
                     <li v-for="category in parentCategories" class="flex justify-between items-center gap-[6px]">
                         <span class="flex gap-1 items-center">
-                            <span class="w-8 h-8 bg-gray-200 rounded-full block"></span>
-                            <a href="#" class="text-gray-600 truncate w-[168px]">{{ category.name }}</a>
+                            <!-- <span class="w-8 h-8 bg-gray-200 rounded-full block"></span> -->
+                            <span class="w-8 h-8 bg-gray-200 rounded-full overflow-hidden block bg-cover bg-center">
+                                <img class="w-full h-full object-cover" :src="path + category.image"
+                                    alt="woman in a yellow gown">
+                            </span>
+                            <router-link :to="'/category-details/' + category.id"
+                                class="text-gray-600 truncate w-[168px]">{{ category.name }}</router-link>
                         </span>
 
                         <img src="/images/svgs/caret-right.svg" alt="">
@@ -158,9 +216,9 @@
             <ul v-if="parentCategories && parentCategories.length > 0"
                 class='2xl:max-w-[1480px]  md:py-2 lg:py-0 h-fit mx-auto flex md:gap-x-1 lg:gap-x-3 md:justify-center lg:items-center'>
                 <li v-for="category in parentCategories" class="flex items-center">
-                    <a data-dropdown="dropdown1"
+                    <router-link data-dropdown="dropdown1"
                         class='dropdown-toggle px-[12px] relative primary-btn-sub-link text-[12px] lg:px-[20.39px] lg:hover:bg-gray-600 lg:hover:text-white transition-all ease-in-out py-[4px] lg:py-[12.32px] block'
-                        href="#">{{ category.name }}</a>
+                        :to="'/category-details/' + category.id">{{ category.name }}</router-link>
                     <div id="dropdown1" class="dropdown absolute z-10 bg-white shadow-lg rounded mt-2">
                         <div
                             class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-4 p-4 dropdown-animation">
@@ -663,9 +721,9 @@ export default {
             }
         });
 
-        watch(countCartitems, (newVal, oldVal) => {
-            console.log(newVal, oldVal);
-        });
+        // watch(countCartitems, (newVal, oldVal) => {
+        //     console.log(newVal, oldVal);
+        // });
 
 
 

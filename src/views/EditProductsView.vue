@@ -21,18 +21,18 @@
 
                 <section class="container mx-auto p-6 font-mono ">
 
-                    <h3 class="text-[20px] font-bold text-gray-800 text-center"> Product Details</h3>
+                    <h3 class="text-[20px] font-bold text-gray-800 text-center"> détails du produit</h3>
 
                     <div class="w-[100%] lg:flex gap-x-4 block">
                         <div class=" lg:w-[50%]">
                             <div class="  flex justify-start items-center mt-4">
                                 <div class="bg-white p-4 rounded shadow w-full">
-                                    <h2 class="text-lg font-semibold mb-4">Edit Product</h2>
+                                    <h2 class="text-lg font-semibold mb-4">Modifier le produit</h2>
                                     <form @submit.prevent="updateExistingProduct" enctype="multipart/form-data">
                                         <!-- Form Group (username)-->
                                         <div class="form-group">
-                                            <label class="text-sm font-medium mb-2 block" for="name"><b>Product
-                                                    Name</b></label>
+                                            <label class="text-sm font-medium mb-2 block" for="name"><b>Nom du
+                                                    produit</b></label>
                                             <input type="text"
                                                 class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 v-model="name" id="name" placeholder="Enter Property Name">
@@ -54,7 +54,7 @@
 
                                         <div class="form-group">
                                             <label class="text-sm font-medium mb-2 block"
-                                                for="quantity"><b>Quantity</b></label>
+                                                for="quantity"><b>Quantité</b></label>
                                             <input type="text"
                                                 class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 v-model="quantity" id="name" placeholder="Enter Product Quantity">
@@ -77,9 +77,8 @@
 
 
                                         <div class="form-group">
-                                            <label class="text-sm font-medium mb-2 block" for="category_id"><b>Choose
-                                                    the
-                                                    Category</b></label>
+                                            <label class="text-sm font-medium mb-2 block"
+                                                for="category_id"><b>Choisissez la catégorie</b></label>
                                             <select class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 v-model="category_id" id="category_id" autocomplete="off">
                                                 <option value="">None</option>
@@ -96,7 +95,7 @@
                                         <!-- Champs pour les attributs et propriétés -->
                                         <div class="form-group" v-for="(field, index) in attribute_fields" :key="index">
                                             <label class="text-sm font-medium mb-2 block"
-                                                :for="'attribute_' + index"><b>Attribute:</b></label>
+                                                :for="'attribute_' + index"><b>Attribut:</b></label>
                                             <select class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 :id="'attribute_' + index" v-model="field.attribute_id"
                                                 @change="fetchProperties(field.attribute_id, index)">
@@ -106,7 +105,7 @@
                                             </select>
 
                                             <label class="text-sm font-medium mb-2 block"
-                                                :for="'property_' + index"><b>Property:</b></label>
+                                                :for="'property_' + index"><b>Propriété:</b></label>
                                             <select class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 :id="'property_' + index" v-model="field.property_id">
                                                 <option v-for="property in properties[index]" :value="property.id">{{
@@ -120,12 +119,12 @@
                                         </div>
                                         <button
                                             class="hover:bg-green-800 transition-all rounded-[4.8px] mt-6 w-full bg-green-700 text-white"
-                                            type="button" @click.prevent="addField">Add Attribute</button>
+                                            type="button" @click.prevent="addField">Ajouter un attribut</button>
 
 
                                         <div class="form-group">
-                                            <label class="text-sm font-medium mb-2 block" for="image"><b>Main
-                                                    Image</b></label>
+                                            <label class="text-sm font-medium mb-2 block" for="image"><b>Image
+                                                    principale</b></label>
                                             <input type="file"
                                                 class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 @change="onFileChange" id="image" placeholder="Enter Product Image">
@@ -137,8 +136,8 @@
 
 
                                         <div class="form-group">
-                                            <label class="text-sm font-medium mb-2 block" for="images"><b>Products
-                                                    Images</b></label>
+                                            <label class="text-sm font-medium mb-2 block" for="images"><b>Images du
+                                                    produit</b></label>
                                             <input type="file"
                                                 class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                                 id="images" multiple @change="handleFileUpload" />
@@ -169,7 +168,7 @@
                                     <span v-if="errorsImages.images" class="text-red-400 mt-1 text-xs font-thin">{{
                                         errorsImages.images[0] }}</span>
                                     <button type="submit"
-                                        class="mt-4 bg-red-600 text-white font-bold py-3 px-4 rounded">Upload</button>
+                                        class="mt-4 bg-red-600 text-white font-bold py-3 px-4 rounded">Télécharger</button>
                                 </form>
                             </div>
                             <div v-if="ProductsImages && ProductsImages.length > 0"
@@ -337,7 +336,7 @@ export default {
             } catch (validationErrors) {
                 console.log(validationErrors);
                 errors.value = validationErrors;
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -350,7 +349,7 @@ export default {
                 categories.value = store.getters['categories/allCategories'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -369,7 +368,7 @@ export default {
                 });
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -397,7 +396,7 @@ export default {
                 });
             } catch (errors) {
                 errorsImages.value = errors;
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -409,7 +408,7 @@ export default {
                 ProductsImages.value = store.getters['ProductsImages/allProductsImages'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -421,7 +420,7 @@ export default {
                 attributes.value = store.getters['attributes/allAttributes'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };

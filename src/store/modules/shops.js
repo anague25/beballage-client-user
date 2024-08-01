@@ -3,7 +3,7 @@ import shopsService from '@/services/shops/shopsService';
 
 const state = {
   shops: [],
-  shop: {},
+  shop: [],
   allShops: [],
 
 };
@@ -70,6 +70,7 @@ const actions = {
     try {
       const response = await shopsService.fetchShop(id);
       commit('setShop', { data: response.data.data });
+      return response;
 
     } catch (error) {
       toast.error('Failed to fetch attributes');

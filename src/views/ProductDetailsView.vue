@@ -2,6 +2,7 @@
     <Navbar></Navbar>
     <link rel="stylesheet" href="/styles/pages/product-detail.css">
     <section class="px-4 md:px-6 lg:px-4 py-6">
+        <Loader></Loader>
         <div class="2xl:max-w-[1480px] xl:max-w-[1410px] mx-auto 2xl:px-0">
             <div class="flex gap-x-2 text-[12px] items-center">
                 <a class="inline-block" href="">Home &n> </a>
@@ -40,7 +41,7 @@
                                     class="text-gray-400 text-[18px]">PC</span> -->
                             </span>
                             <div class="py-3">
-                                <span class="block pb-2 font-semibold">Order Quantity</span>
+                                <span class="block pb-2 font-semibold">Quantité à commander</span>
                                 <div class="flex w-full rounded-[6px] mt-4 overflow-hidden lg:w-fit">
                                     <button @click="decrement" id="decrement"
                                         class="py-0 px-4 bg-black text-white">-</button>
@@ -57,8 +58,8 @@
                             <div class="">
                                 <div class="flex flex-col text-center lg:flex-row gap-2 mt-4">
                                     <a href="#"
-                                        class="inline-block py-2 px-3 border-2 rounded-lg text-[14px] lg:text-[initial] border-gray-300 text-red-600">purchase
-                                        now</a>
+                                        class="inline-block py-2 px-3 border-2 rounded-lg text-[14px] lg:text-[initial] border-gray-300 text-red-600">Commandez
+                                        maintenant</a>
                                     <a href="#" @click="addToCart"
                                         class="inline-block py-2 px-3 rounded-lg text-[14px] lg:text-white bg-gray-600 text-white">Ajouter
                                         au panier
@@ -66,16 +67,61 @@
                                 </div>
                                 <div class="flex my-3">
                                     <a :href="whatsappLink"
-                                        class="inline-block py-2 px-3 rounded-lg text-[14px] lg:text-white bg-green-600 text-white">Order
-                                        on whatsapp </a>
+                                        class="inline-block py-2 px-3 rounded-lg text-[14px] lg:text-white bg-green-600 text-white">Commandez
+                                        Sur Whatsapp </a>
                                     <span class="ml-2"><img src="/images/whatsapp-svgrepo-com.svg" alt="" width="34"
                                             height="34"></span>
                                 </div>
+                                <div class="flex my-3">
+                                    <button @click="addToFavorites(favoriteProduct)"
+                                        class="inline-block py-1 px-3 rounded-lg text-[14px] lg:text-white bg-red-700 text-white">
+                                        <a href="#" class="block"><img src=/images/svgs/favorite.svg
+                                                alt="consulter vos favoris" /></a>
+                                    </button>
+
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
                     <div v-else>
-                        <h3 class="bg-black inline-block px-3 py-2 rounded-full text-white">Loading...</h3>
+                        <h3 class="bg-black inline-block px-3 py-2 rounded-full text-white">Chargement...</h3>
+                    </div>
+
+                    <div class="">
+                        <section class="">
+                            <div class="w-full bg-white my-[28px] rounded-md">
+                                <div class="flex items-center">
+                                    <h2
+                                        class="text-[20px] py-4 px-4 border-b-2 w-[100%] lg:w-[100%] font-bold uppercase">
+                                        Découvrez les avis des utilisateurs qui ont partagé leur expérience avec ce
+                                        produit.</h2>
+                                </div>
+                                <div id="sliderContainer"
+                                    class="whitespace-nowrap grid grid-cols-2 md:grid-cols-3 grid-flow-row-dense px-4 py-4 gap-y-3 lg:flex lg:flex-row lg:overflow-hidden items-center gap-x-[10px] flex-wrap">
+                                    <!-- <div class="p-[11.86px] rounded-md shadow-md bg-white">
+                                        <span class="block"><img src="/images/pngs/jacket.png" alt="" width="105"
+                                                class="w-full object-cover h-full"></span>
+                                        <div>
+                                            <p class="text-gray-500 text-sm">(Jacket + Vest + Pants)</p>
+                                            <p class="w-full lg:w-[189px] text-xs text-gray-500 truncate">High-end Groom
+                                                Formaluated suites</p>
+                                            <div class="flex justify-between items-center py-1">
+                                                <small class="font-semibold text-[12px] text-gray-600">10 set</small>
+                                                <span
+                                                    class="font-bold inline-block text-[12px] text-gray-600">Other</span>
+                                            </div>
+                                            <div class="flex items-center justify-between gap-x-2">
+                                                <span class="block font-bold text-sm">70 000 FCFA</span>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <ReviewCard v-for="review in reviews" :key="review.id" :review="review">
+                                    </ReviewCard>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     <!-- <div class="">
                         <section class="">
@@ -105,7 +151,7 @@
                                         </div>
                                     </div>
 
-                                   
+
                                     <div class="p-[11.86px] rounded-md shadow-md bg-white">
                                         <span class="block"><img src="/images/pngs/jacket.png" alt="" width="105"
                                                 class="w-full object-cover h-full"></span>
@@ -261,8 +307,8 @@
                                 </div>
                             </div>
                         </section>
-                    </div>
-                    <div class="">
+                    </div> -->
+                    <!-- <div class="">
                         <section class="">
                             <div class="w-full bg-white my-[28px] rounded-md">
                                 <div class="flex items-center">
@@ -451,7 +497,7 @@
                 </div>
                 <aside class="w-full lg:w-[28%] relative">
                     <div class="bg-white rounded-md">
-                        <h2 class="py-2 px-3 border-b-[1px] font-bold border-gray-300">Delivery & return</h2>
+                        <h2 class="py-2 px-3 border-b-[1px] font-bold border-gray-300">Livraison et retour</h2>
                         <ul class="py-4 px-3">
                             <li class="flex gap-x-4 my-4">
                                 <span
@@ -468,8 +514,8 @@
                                         <path d="M16 5.25l-8 4.5"></path>
                                     </svg>
                                 </span>
-                                <p class="text-[14px]">Enjoy cheaper shipping fees when you select a PickUp Station at
-                                    checkout</p>
+                                <p class="text-[14px]">Bénéficiez de frais d'expédition moins chers lorsque vous
+                                    sélectionnez une station PickUp lors du paiement.</p>
                             </li>
                             <li class="flex gap-x-4 my-4">
                                 <span
@@ -485,8 +531,8 @@
                                         <path d="M3 9l4 0"></path>
                                     </svg>
                                 </span>
-                                <p class="text-[14px]">Enjoy cheaper shipping fees when you select a PickUp Station at
-                                    checkout</p>
+                                <p class="text-[14px]">Bénéficiez de frais d'expédition moins chers lorsque vous
+                                    sélectionnez une station PickUp lors du paiement.</p>
                             </li>
                             <li class="flex gap-x-4 my-4">
                                 <span
@@ -507,8 +553,8 @@
                                         <path d="M14 12h4"></path>
                                     </svg>
                                 </span>
-                                <p class="text-[14px]">Enjoy cheaper shipping fees when you select a PickUp Station at
-                                    checkout</p>
+                                <p class="text-[14px]">Bénéficiez de frais d'expédition moins chers lorsque vous
+                                    sélectionnez une station PickUp lors du paiement.</p>
                             </li>
                             <li class="flex gap-x-4 my-4">
                                 <span
@@ -529,14 +575,17 @@
                                         <path d="M14 12h4"></path>
                                     </svg>
                                 </span>
-                                <p class="text-[14px]">Enjoy cheaper shipping fees when you select a PickUp Station at
-                                    checkout</p>
+                                <p class="text-[14px]">Bénéficiez de frais d'expédition moins chers lorsque vous
+                                    sélectionnez une station PickUp lors du paiement.</p>
                             </li>
                         </ul>
                     </div>
-                    <div class="bg-white my-5 rounded-md relative lg:sticky top-[10px] left-0">
-                        <ul>
-                            <li
+                    <div class="bg-white my-5 rounded-md relative lg:sticky top-[10px] left-0 p-2">
+                        <div>
+                            <ReviewForm :reviewableId="product?.id" reviewableType="App\Models\Product"
+                                @reviewSubmitted="fetchProductReviews(product.id, 'App\\Models\\Product')">
+                            </ReviewForm>
+                            <!-- <li
                                 class="py-2 px-3 border-gray-200 flex items-center gap-x-2 hover:bg-gray-100 transition-all ease-in-out  border-b-[2px]">
                                 <span class="block text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -548,9 +597,9 @@
                                         <path d="M10 12h11" />
                                         <path d="M10 18h11" />
                                     </svg></span>
-                                <a href="#">Product details</a>
-                            </li>
-                            <li
+                                <a href="#">Details du produitoooooo</a>
+                            </li> -->
+                            <!-- <li
                                 class="py-2 px-3 border-gray-200  flex items-center gap-x-2 hover:bg-gray-100 transition-all ease-in-out  border-b-[2px]">
                                 <span class="block text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -573,7 +622,7 @@
                                         <circle cx="12" cy="8" r="2" />
                                         <rect width="16" height="16" x="6" y="2" rx="2" />
                                     </svg></span>
-                                <a href="#">Product showcase</a>
+                                <a href="#">Vitrine de produits</a>
                             </li>
                             <li
                                 class="py-2 px-3 border-gray-200  flex items-center gap-x-2 hover:bg-gray-100 transition-all ease-in-out  border-b-[2px]">
@@ -584,20 +633,32 @@
                                         <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" />
                                         <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
                                     </svg></span>
-                                <a href="#">Buyers feedback</a>
-                            </li>
-                        </ul>
+                                <a href="#">Commentaires des acheteurs</a>
+                            </li> -->
+                        </div>
                     </div>
                     <div class="bg-white rounded-md">
-                        <h2 class="py-3 px-3 border-b-2 border-gray-300">Seller information</h2>
+                        <h2 class="py-3 px-3 border-b-2 border-gray-300">Information du vendeur</h2>
                         <div class="px-3 py-3">
                             <div class="">
-                                <span class="block font-semibold text-[20px]">CODEC SHOP</span>
-                                <span class="block text-gray-400 text-[15px]">Logbessou, Douala</span>
+                                <span class="block font-semibold text-[20px]">{{ product?.shop?.name }}</span>
+                                <span v-if="product?.shop?.cities?.length > 0" v-for="city in product?.shop?.cities"
+                                    class="block text-gray-400 text-[15px]">{{ city.name }} - {{ city.neighborhood.name
+                                    }}</span>
+                                <span v-else class="block text-gray-400 text-[15px]">Logbessou, Douala</span>
                             </div>
+                            <div class="flex my-3">
+                                <button @click="addToFavorites(favoriteShop)"
+                                    class="inline-block py-1 px-3 rounded-lg text-[14px] lg:text-white bg-red-700 text-white">
+                                    <a href="#" class="block flex">Boutique favorite <img src=/images/svgs/favorite.svg
+                                            alt="consulter vos favoris" /></a>
+                                </button>
+
+                            </div>
+
                             <div class="">
                                 <div class="flex flex-col gapy-2 py-12">
-                                    <ul class="flex gap-x-1 items-center justify-center">
+                                    <!-- <ul class="flex gap-x-1 items-center justify-center">
                                         <li class="text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -643,13 +704,15 @@
                                                     points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                                             </svg>
                                         </li>
-                                    </ul>
-                                    <span class="flex  text-gray-400 justify-center items-center">0 customer
-                                        reviews</span>
+                                    </ul> -->
+
+                                    <ReviewForm :reviewableId="shopId" reviewableType="App\Models\Shop"></ReviewForm>
+                                    <span class="flex  text-gray-400 justify-center items-center">0 Avis</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <a class="inline-block py-2 px-8 rounded-lg text-center bg-red-100 text-red-600 font-semibold"
-                                        href="#">Our shop</a>
+                                    <router-link
+                                        class="inline-block py-2 px-8 rounded-lg text-center bg-red-100 text-red-600 font-semibold"
+                                        :to="'/vendor-profile/' + product?.shop?.id">Notre Boutique</router-link>
                                     <a class="inline-block py-2 px-8 rounded-lg text-center bg-red-100 text-red-600 font-semibold"
                                         href="#">Message</a>
                                 </div>
@@ -885,25 +948,73 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import Navbar from '@/components/home/Navbar.vue';
-
+import Loader from '@/components/loader/Loader.vue';
+import ReviewForm from '@/components/reviews/ReviewForm.vue'
+import toast from '@/plugins/Notification.js';
+import ReviewCard from '@/components/reviews/ReviewCard.vue';
+import axios from '@/plugins/axios.js';
 
 export default {
     components: {
         Navbar,
+        Loader,
+        ReviewForm,
+        ReviewCard,
     },
     setup() {
         const route = useRoute();
         const store = useStore();
+        const reviews = ref([]);
         const quantity = ref(1);
         const path = store.getters['getImagePaths/getPath'];
         const product = ref(null);
+        const shopId = computed(() => {
+            if (product.value) {
+                return product.value.shop.id;
+            }
+            return null;
+        });
+        const favoriteProduct = computed(() => {
+            if (product.value) {
+                return { id: product.value.id, type: 'App\\Models\\Product' };
+            }
+            return null;
+        });
+
+        const favoriteShop = computed(() => {
+            if (product.value) {
+                return { id: product.value.shop.id, type: 'App\\Models\\Shop' };
+            }
+            return null;
+        });
         const phoneNumber = '+237682827307';
         const whatsappLink = ref('');
         // console.log(product.value);
 
+        watch(product, (newVal, oldVal) => {
+            console.log(newVal);
+        });
+
+
         const addToCart = () => {
             store.dispatch('cart/addToCart', { product: product.value, quantity: quantity.value });
         };
+
+        const addToFavorites = async (item) => {
+            store.dispatch('loader/setLoading', true);
+            try {
+                // await new Promise(resolve => setTimeout(resolve, 5000));
+                await store.dispatch('favorite/addToFavorites', item);
+            } catch (error) {
+                if (error.response && error.response.data && error.response.data.message) {
+                    toast.error(error.response.data.message);
+                }
+
+            } finally {
+                store.dispatch('loader/setLoading', false);
+            }
+        };
+
 
         const increment = () => {
             quantity.value++;
@@ -930,6 +1041,26 @@ export default {
         };
 
 
+        const fetchProductReviews = async (reviewableId, reviewableType) => {
+            try {
+                console.log(reviewableId);
+                console.log(reviewableType);
+
+                const response = await axios.get('/api/all-reviews', {
+                    params: {
+                        reviewable_id: reviewableId,
+                        reviewable_type: reviewableType
+                    }
+                });
+                reviews.value = response.data;
+                console.log(reviews.value);
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+            }
+        };
+
+
+
         onMounted(async () => {
             const productId = Number(route.params.id);
             let productFromState = store.getters['products/getProductById'](productId);
@@ -941,6 +1072,8 @@ export default {
 
             product.value = productFromState;
             generateWhatsAppLink();
+            fetchProductReviews(product.value.id, 'App\\Models\\Product'); // Replace with actual reviewable_id and reviewable_type
+
         });
 
         watch(quantity, generateWhatsAppLink);
@@ -953,6 +1086,13 @@ export default {
             addToCart,
             path,
             whatsappLink,
+            addToFavorites,
+            favoriteProduct,
+            favoriteShop,
+            shopId,
+            reviews,
+            fetchProductReviews,
+
 
         };
     }

@@ -14,8 +14,9 @@
                                     <img class="w-full h-full object-cover" :src="path + category.image"
                                         alt="woman in a yellow gown">
                                 </span>
-                                <a href="#" aria-label="see more products on Men's category"
-                                    class="text-gray-600 truncate w-[168px]">{{ category.name }}</a>
+                                <router-link :to="'/category-details/' + category.id"
+                                    aria-label="see more products on Men's category"
+                                    class="text-gray-600 truncate w-[168px]">{{ category.name }}</router-link>
                             </div>
                             <img src="/images/svgs/caret-right.svg" alt="caret icon pointing to the right">
                         </span>
@@ -936,7 +937,7 @@
         </div>
         <div class="w-full mt-2 lg:mt-0 md:w-[50%] lg:w-[25%] rounded-[6.13px]">
             <div class="rounded-[6.13px] bg-white p-[21px]">
-                <div v-if="authUser.firstName" class="flex gap-x-[17.5px]">
+                <div v-if="token" class="flex gap-x-[17.5px]">
                     <span class="inline-block p-2 bg-gray-400 rounded-full"><img :src="path + authUser.profile" alt=""
                             width="50" height="50" class="rounded-full inline-block"></span>
                     <span class="block ">
@@ -1034,6 +1035,8 @@ export default {
             if (token.value) {
                 // console.log('le token exist');
                 store.dispatch('auth/fetchUser');
+            } else {
+                console.log('le token existe pas' + token.value);
             }
             store.dispatch('products/fetchAllProductsWithoutPaginate');
             store.dispatch('categories/fetchAllCategories');

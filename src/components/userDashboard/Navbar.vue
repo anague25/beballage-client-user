@@ -110,7 +110,7 @@
                     <div class="text-center mt-1">
                         <span class="block font-bold text-lg text-gray-800">{{ authUser.firstName }} {{
                             authUser.lastName
-                        }}</span>
+                            }}</span>
                         <span class="block text-gray-500">{{ authUser.email }}</span>
                     </div>
                 </div>
@@ -127,40 +127,40 @@
                 <ul>
                     <li class="w-full flex  items-center justify-start pl-[59px]">
                         <i class="fa fa-home inline-block mr-2 text-[18px] text-gray-800" aria-hidden="true"></i>
-                        <router-link to="/user-dashboard" class="font-bold text-red-600">Dashboard</router-link>
+                        <router-link to="/user-dashboard" class="font-bold text-red-600">Tableau de bord</router-link>
                     </li>
                     <li
                         class="w-full flex justify-start pl-[59px] items-center  py-1 ml-4 mt-2 text-white border-gray-600">
                         <i class="fa fa-hourglass-end inline-block mr-2 text-[18px] text-gray-800"
                             aria-hidden="true"></i>
-                        <a href="./user-profile.html" class="font-bold  text-gray-800">My Profile</a>
+                        <router-link to="/user-profile" class="font-bold  text-gray-800">Mon profil</router-link>
                     </li>
                     <div class="bg-white p-2 rounded shadow">
                         <li
                             class="w-[60%] flex  justify-center mx-auto  py-1  mt-1 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-cart-arrow-down inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="./user-orders.html" class="font-medium text-gray-800">My Orders</a>
+                            <router-link to="/orders" class="font-medium text-gray-800">Mes commandes</router-link>
                         </li>
                         <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-cart-arrow-down inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="./user-payment.html" class="font-medium text-gray-800">My Payments</a>
+                            <router-link to="/payments" class="font-medium text-gray-800">Mes paiements</router-link>
                         </li>
                         <li
                             class="w-[60%] flex  justify-center mx-auto  py-1  mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-cart-arrow-down inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="./user-favorite-shops.html" class="font-medium text-gray-800">My Favorite
-                                Shops</a>
+                            <router-link to="/favorites-shops" class="font-medium text-gray-800">Mes boutiques
+                                préférées</router-link>
                         </li>
                         <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-cart-arrow-down inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="user-favorite-products.html" class="font-medium text-gray-800">My Favorite
-                                Products</a>
+                            <router-link to="/favorites-products" class="font-medium text-gray-800">Mes produits
+                                préférés</router-link>
                         </li>
                     </div>
                     <!-- <li class="w-full flex  justify-start pl-[59px] items-center py-1 ">
@@ -170,7 +170,7 @@
                     <li v-if="authUser?.shop?.id"
                         class="w-full flex justify-start pl-[59px] items-center  py-1 ml-4 mt-2 text-white border-gray-600">
                         <i class="fa fa-gratipay inline-block mr-2 text-[18px] text-gray-800" aria-hidden="true"></i>
-                        <a href="./user-shop-profile.html" class="font-bold text-gray-800">Shop Profile</a>
+                        <a href="./user-shop-profile.html" class="font-bold text-gray-800">Profil de boutique</a>
                     </li>
                     <div v-if="authUser?.shop?.id" class="bg-white p-2 rounded shadow">
                         <li
@@ -184,37 +184,42 @@
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full ">
                             <i class="fa fa-gratipay inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="user-shop-order.html" class="font-medium text-gray-800">Shop Orders</a>
+                            <router-link to="/user-shop-orders" class="font-medium text-gray-800">Commandes de
+                                Boutique</router-link>
                         </li>
                         <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full ">
                             <i class="fa fa-gratipay inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="user-shop-payment.html" class="font-medium text-black">Shop Payments</a>
+                            <router-link to="/user-shop-payments" class="font-medium text-black">Paiements de
+                                Boutique</router-link>
                         </li>
                         <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full ">
                             <i class="fa fa-gratipay inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="user-attribute.html" class="font-medium text-black ">Attributes</a>
+                            <router-link to="/user-attribute" class="font-medium text-black ">Les
+                                attributs</router-link>
                         </li>
                         <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-gratipay inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="./user-category.html" class="font-medium text-black">Categories</a>
+                            <router-link to="/user-categories" class="font-medium text-black">Les
+                                Categories</router-link>
                         </li>
-                        <li
+                        <!-- <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-gratipay inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
                             <a href="./user-condition.html" class="font-medium text-gray-800">Conditions</a>
-                        </li>
+                        </li> -->
                         <li
                             class="w-[60%] flex  justify-center mx-auto py-1 mt-2 text-white border-[1px] border-gray-600 bg-gray-200 rounded-full">
                             <i class="fa fa-plus-square-o inline-block mr-2 text-[18px] text-gray-800"
                                 aria-hidden="true"></i>
-                            <a href="./user-property.html" class="font-medium text-gray-800">Properties</a>
+                            <router-link to="/user-properties" class="font-medium text-gray-800">Les
+                                Propriétés</router-link>
                         </li>
                     </div>
                 </ul>

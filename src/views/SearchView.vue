@@ -2,14 +2,15 @@
     <Navbar></Navbar>
     <section class="px-4 lg:px-6 xl:px-0">
         <div class="2xl:max-w-[1480px] xl:max-w-[1410px] mx-auto lg:px-6 2xl:px-0">
-            <Loader ></Loader>
+            <Loader></Loader>
             <div class="badcrub py-[20px] hidden lg:block">
-                <a class="text-gray-500 text-[13px] font-semibold" href="/index.html">Home</a> > <a href="#"
-                    class="text-red-600 text-[14px] font-semibold">All Categories</a>
+                <a class="text-gray-500 text-[13px] font-semibold" href="https://deballage.cm">Home</a> > <router-link
+                    to="/categories" class="text-red-600 text-[14px] font-semibold">All Categories</router-link>
 
                 <div v-if="parentCategories.length > 0"
                     class="grid grid-cols-1 lg:grid-cols-4 gap-y-[12px] lg:gap-4 mt-4">
-                    <div v-for="category in parentCategories" class="bg-white p-4 flex gap-x-6 rounded-md">
+                    <div v-for="category in parentCategories.slice(0, 8)" :key="category.id"
+                        class="bg-white p-4 flex gap-x-6 rounded-md">
                         <img class=" block  object-cover w-[70px] h-[70px] w-full" :src="path + category.image"
                             :alt="category.name">
                         <div class=''>
@@ -86,7 +87,7 @@
                 </div>
             </div>
             <div class="flex justify-between items-center py-3 px-4 bg-white shadow-lg rounded-md mt-4 lg:hidden">
-                <span class="inline-block font-bold">All Products</span>
+                <span class="inline-block font-bold">Tous les produits</span>
                 <button class="inline-block toggle-button"><img width="30" src="/images/svgs/icon-filter.svg"
                         alt="icon of a filter"></button>
             </div>
@@ -96,11 +97,12 @@
                     <!-- Sidebar content goes here -->
                     <aside class=" flex flex-col gap-x-2 ">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-[20px] font-bold">Market place categories</h3>
+                            <h3 class="text-[20px] font-bold">Catégories de marché</h3>
                             <img class="icon-close" src="/images/svgs/icon-close.svg" alt="">
                         </div>
                         <div class="mt-4 ">
-                            <h4 class="text-[18px] font-bold">All categories</h4>
+                            <h4 class="text-[18px] font-bold"><router-link to="/categories">Toutes
+                                    catégories</router-link></h4>
                             <ul v-if="parentCategories.length > 0" class="mt-2 space-y-1">
                                 <li v-for="category in parentCategories" :key="category.id">
                                     <a href="#">{{ category.name }}</a>
@@ -116,18 +118,20 @@
                         </div>
                         <div v-if="allAttributes.length > 0">
                             <div class="my-4" v-for="attribute in allAttributes">
-                                <h3 class="text-[16px] font-bold">Filter by {{ attribute.name }}</h3>
-                                <ul class="pl-2 mt-2">
-                                    <li v-for="property in attribute.properties" class="my-1">
-                                        <label class="inline-flex items-center">
-                                            <input type="checkbox" v-model="selectedProperties" :value="property.id"
-                                                class="form-checkbox text-red-600">
-                                            <span class="ml-2">{{ property.name }}</span>
-                                        </label>
-                                    </li>
+                                <template v-if="attribute.properties.length > 0">
+                                    <h3 class="text-[16px] font-bold">Filtrer par {{ attribute.name }}</h3>
+                                    <ul class="pl-2 mt-2">
+                                        <li v-for="property in attribute.properties" class="my-1">
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" v-model="selectedProperties" :value="property.id"
+                                                    class="form-checkbox text-red-600">
+                                                <span class="ml-2">{{ property.name }}</span>
+                                            </label>
+                                        </li>
 
-                                    <!-- More color options... -->
-                                </ul>
+                                        <!-- More color options... -->
+                                    </ul>
+                                </template>
                             </div>
                         </div>
                         <div v-else>
@@ -203,9 +207,10 @@
             class="2xl:max-w-[1480px] xl:max-w-[1410px] mx-auto lg:px-6 2xl:px-0 flex gap-x-5  pt-3 lg:pt-6 pb-10 justify-stretch">
             <div class="bg-white px-5 py-7 rounded-[6px] sidebar hidden lg:block lg:w-[22%] self-start">
                 <aside class=" flex flex-col gap-x-2 ">
-                    <h3 class="text-[20px] font-bold">Market place categories</h3>
+                    <h3 class="text-[20px] font-bold">Catégories de marché</h3>
                     <div class="mt-4 ">
-                        <h4 class="text-[18px] font-bold">All categories</h4>
+                        <h4 class="text-[18px] font-bold"><router-link to="/categories">Toutes
+                                catégories</router-link></h4>
                         <ul v-if="parentCategories.length > 0" class="mt-2 space-y-1">
                             <li v-for="category in parentCategories" :key="category.id">
                                 <a href="#">{{ category.name }}</a>
@@ -219,20 +224,23 @@
                             <li><a href="#">Sweaters</a></li>
                         </ul>
                     </div>
+
                     <div v-if="allAttributes.length > 0">
                         <div class="my-4" v-for="attribute in allAttributes" :key="attribute.id">
-                            <h3 class="text-[16px] font-bold">Filter by {{ attribute.name }}</h3>
-                            <ul class="pl-2 mt-2">
-                                <li v-for="property in attribute.properties" class="my-1">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" v-model="selectedProperties" :value="property.id"
-                                            class="form-checkbox text-red-600">
-                                        <span class="ml-2">{{ property.name }}</span>
-                                    </label>
-                                </li>
+                            <template v-if="attribute.properties.length > 0">
+                                <h3 class="text-[16px] font-bold">Filter by {{ attribute.name }}</h3>
+                                <ul class="pl-2 mt-2">
+                                    <li v-for="property in attribute.properties" class="my-1">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" v-model="selectedProperties" :value="property.id"
+                                                class="form-checkbox text-red-600">
+                                            <span class="ml-2">{{ property.name }}</span>
+                                        </label>
+                                    </li>
 
-                                <!-- More color options... -->
-                            </ul>
+                                    <!-- More color options... -->
+                                </ul>
+                            </template>
                         </div>
 
                     </div>
@@ -309,8 +317,8 @@
                                 class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 grid-flow-row-dense lg:grid-rows-2 gap-x-2 gap-y-2">
                                 <router-link :to="'product-details/' + product.id" v-for="product in searchResults"
                                     :key="'search_' + product.id" class="p-[11.86px] rounded-md shadow-md bg-white ">
-                                    <span class="block"><img :src="path + product.image" alt="" width="201"
-                                            height="201"></span>
+                                    <span class="block"><img :src="path + product.image" alt=""
+                                            style="width: 217px;height: 201px;"></span>
                                     <div class="">
                                         <p class=" text-gray-500">{{ product.name }}</p>
                                         <p class="w-full lg:w-[189px] text-sm text-gray-500 ">
@@ -342,10 +350,10 @@
                                 </div>
                                 <div
                                     class="w-full px-3 lg:px-0 text-center lg:text-[initial] pb-4 lg:pb-0 flex justify-center flex-col items-center">
-                                    <span class="text-2xl text-gray-700 mb-2 block font-bold">No items found for this
-                                        search</span>
-                                    <p class="text-gray-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Cumque, consectetur.</p>
+                                    <span class="text-2xl text-gray-700 mb-2 block font-bold">Aucun élément trouvé pour
+                                        cette recherche</span>
+                                    <p class="text-gray-500">Nous n'avons trouvé aucun résultat correspondant à votre
+                                        recherche. Veuillez essayer un autre terme de recherche.</p>
                                 </div>
                             </div>
                         </div>
@@ -369,7 +377,7 @@ import Loader from '@/components/loader/Loader.vue';
 export default {
     components: {
         Navbar,
-        Loader ,
+        Loader,
     },
     setup() {
         const route = useRoute();
@@ -393,9 +401,9 @@ export default {
                     noResultsFound.value = response.data.data.length === 0;
                 } catch (error) {
                     console.error(error);
-                } finally{
-                store.dispatch('loader/setLoading', false);
-            }
+                } finally {
+                    store.dispatch('loader/setLoading', false);
+                }
             }
         };
 
@@ -437,7 +445,7 @@ export default {
                 searchResults.value = filteredProducts;
             } catch (error) {
                 console.error('Failed to apply filters:', error);
-            } 
+            }
         };
 
 

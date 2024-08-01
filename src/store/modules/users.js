@@ -92,12 +92,8 @@ const actions = {
     try {
       const response = await usersService.updateUser(user);
       commit('updateUser', response.data);
-      // console.log('kkkkkkkkkkkkkkkkkkkkkkkkkk');
 
-      // Mettre à jour la liste des attributs pour refléter les changements
-      await dispatch('fetchUsers', { page: state.currentPage, search: '' });
-      console.log(response);
-      return response.data; // Retourne les données mises à jour
+      return response.data;
     } catch (error) {
       console.log(error);
       if (error.response && error.response.data && error.response.data.errors) {

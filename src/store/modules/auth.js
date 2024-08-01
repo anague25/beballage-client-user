@@ -73,6 +73,7 @@ const actions = {
       commit('REMOVE_ACCESS_TOKEN'); // Mutation pour supprimer le jeton du store
       commit('REMOVE_AUTH_USER'); // Mutation pour supprimer le user du store
     } catch (error) {
+      localStorage.removeItem('access_token');
       console.error('Error logging out:', error);
     }
   },

@@ -11,9 +11,9 @@
                             <tr
                                 class="text-md font-semibold tracking-wide text-left text-white bg-red-600 uppercase border-b border-gray-600">
                                 <th class="borderpx-4 py-3">Image</th>
-                                <th class="border px-4 py-3">Name</th>
-                                <th class="border px-4 py-3">Quantity</th>
-                                <th class="border px-4 py-3">Price</th>
+                                <th class="border px-4 py-3">Nom</th>
+                                <th class="border px-4 py-3">Quantite</th>
+                                <th class="border px-4 py-3">Prix</th>
                                 <th class="border px-4 py-3">Description</th>
                                 <th class="border border px-4 py-3">Action</th>
                             </tr>
@@ -35,10 +35,10 @@
 
                                         <router-link id="" :to="'/edit-product/' + product.id"
                                             class="inline-block  px-1 border-2 rounded-lg font-bold  text-white"
-                                            style="background-color: green; border-color: green; ">edit
+                                            style="background-color: green; border-color: green; ">Modifier
                                         </router-link>
                                         <a id="" href="#" type="button" @click="confirmDelete(product.id)"
-                                            class="inline-block   px-1 border-2 rounded-lg font-bold  border-red-600 bg-red-600 text-white">delete
+                                            class="inline-block   px-1 border-2 rounded-lg font-bold  border-red-600 bg-red-600 text-white">Supprimer
                                         </a>
                                         <!-- <a id="" href=""
                                             class="inline-block  px-1 border-2 rounded-lg font-bold  text-white"
@@ -70,10 +70,10 @@
                                     <div class="flex gap-x-3">
                                         <a id="" href="#"
                                             class="inline-block  px-1 border-2 rounded-lg font-bold  text-white"
-                                            style="background-color: green; border-color: green; ">edit
+                                            style="background-color: green; border-color: green; ">Modifier
                                         </a>
                                         <a id="" href="#"
-                                            class="inline-block   px-1 border-2 rounded-lg font-bold  border-red-600 bg-red-600 text-white">delete
+                                            class="inline-block   px-1 border-2 rounded-lg font-bold  border-red-600 bg-red-600 text-white">Supprimer
                                         </a>
                                         <!-- <a id="" href=""
                                             class="inline-block  px-1 border-2 rounded-lg font-bold  text-white"
@@ -142,11 +142,11 @@ export default {
         onMounted(async () => {
 
             store.dispatch('loader/setLoading', true);
-            try{
+            try {
                 await store.dispatch('auth/fetchUser');
-            }catch (error) {
+            } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         });

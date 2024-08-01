@@ -14,6 +14,7 @@ import ProductSeller from './modules/ProductSeller';
 import ProductsImages from './modules/ProductsImages';
 import order from './modules/order';
 import loader from './modules/loader';
+import favorite from './modules/favorite';
 const store = createStore({
   modules: {
     products, // Utilisez un nom clé pour le module
@@ -31,6 +32,7 @@ const store = createStore({
     ProductsImages, // Utilisez un nom clé pour le module
     order, // Utilisez un nom clé pour le module
     loader, // Utilisez un nom clé pour le module
+    favorite, // Utilisez un nom clé pour le module
   }
 });
 

@@ -14,14 +14,14 @@
                             <!-- component -->
                             <div class=" py-5 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
                                 <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-
+<!-- 
                                 <div class="flex justify-start item-start  flex-col">
                                     <h1
                                         class="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
                                         Order #13432</h1>
                                     <p class="text-base dark:text-gray-300 font-medium leading-6 text-gray-600">21st
                                         Mart 2021 at 10:34 PM</p>
-                                </div>
+                                </div> -->
 
                                 <div
                                     class="mt-1 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">

@@ -14,7 +14,8 @@
                         <form @submit.prevent="createNewShop" enctype="multipart/form-data">
                             <!-- Form Group (username)-->
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="name"><b>Shop Name</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="name"><b>Nom de la
+                                        boutique</b></label>
                                 <input type="text" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="name" id="name" placeholder="Enter Shop Name">
                                 <span v-if="errors.name" class="text-red-400 mt-1 text-xs font-thin">{{ errors.name[0]
@@ -29,7 +30,7 @@
                                     placeholder="Enter Shop Description "></textarea>
                                 <span v-if="errors.description" class="text-red-400 mt-1 text-xs font-thin">{{
                                     errors.description[0]
-                                }}</span>
+                                    }}</span>
                             </div>
 
 
@@ -41,7 +42,7 @@
                                     <option v-for="city in cities" :key="city.id" :value="city.id">{{
                                         city.name }}</option>
                                 </select>
-                                <label class="text-sm font-medium mb-2 block"><b>Neighborhood</b></label>
+                                <label class="text-sm font-medium mb-2 block"><b>Quartier</b></label>
                                 <select class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     v-model="field.neighborhood_id">
                                     <option v-for="neighborhood in neighborhoods[index]" :key="neighborhood.id"
@@ -78,24 +79,25 @@
                             </div>
                             <button
                                 class=" hover:bg-green-800 transition-all rounded-[4.8px] mt-6 w-full bg-green-700 text-white"
-                                type="button" @click="addFieldCategorySubCategory">Add</button>
+                                type="button" @click="addFieldCategorySubCategory">Ajouter</button>
 
 
 
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="image"><b>Profile Image</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="image"><b>Image de profil</b></label>
                                 <input type="file" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     @change="onFileChangeProfile" id="image" placeholder="Enter Profie Image">
                                 <img v-if="imageUrlProfile" :src="imageUrlProfile" alt="Selected Image" class="mt-2"
                                     width="50" height="50" />
                                 <span v-if="errors.profile" class="text-red-400 mt-1 text-xs font-thin">{{
                                     errors.profile[0]
-                                }}</span>
+                                    }}</span>
                             </div>
 
                             <div class="form-group">
-                                <label class="text-sm font-medium mb-2 block" for="image"><b>Cover Image</b></label>
+                                <label class="text-sm font-medium mb-2 block" for="image"><b>Image de
+                                        couverture</b></label>
                                 <input type="file" class="block w-full py-3 px-3 border-[1.5px] border-gray-400"
                                     @change="onFileChangeCover" id="image" placeholder="Enter Cover Image">
                                 <img v-if="imageUrlCover" :src="imageUrlCover" alt="Selected Image" class="mt-2"
@@ -106,7 +108,7 @@
 
                             <!-- Save changes button-->
                             <button type="submit"
-                                class="py-[12px] hover:bg-red-800 transition-all rounded-[4.8px] mt-6 w-full bg-red-700 text-white">Create</button>
+                                class="py-[12px] hover:bg-red-800 transition-all rounded-[4.8px] mt-6 w-full bg-red-700 text-white">Créer</button>
                         </form>
                     </div>
                 </div>
@@ -165,7 +167,7 @@ export default {
                 categories.value = store.getters['categories/allCategories'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -179,7 +181,7 @@ export default {
                 cities.value = store.getters['cities/allCities'];
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
@@ -260,7 +262,7 @@ export default {
             } catch (validationErrors) {
                 errors.value = validationErrors;
                 console.log(validationErrors);
-            }finally{
+            } finally {
                 store.dispatch('loader/setLoading', false);
             }
         };
